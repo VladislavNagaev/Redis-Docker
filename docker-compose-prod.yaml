@@ -1,0 +1,32 @@
+---
+version: "3.8"
+
+
+services:
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    networks: 
+      - main-overlay-network
+    ports:
+      - target: 6379
+        published: 6379
+        mode: host
+    volumes:
+      - type: bind
+        source: ${APPS_DATA}/redis
+        target: /data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 30s
+      retries: 50
+    restart: always
+
+
+networks:
+  main-overlay-network:
+    external: true
+    driver: overlay
+    attachable: true
