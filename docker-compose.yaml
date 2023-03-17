@@ -5,10 +5,10 @@ version: "3.8"
 services:
 
   redis:
-    image: redis:latest
-    # build:
-    #   context: .
-    #   dockerfile: base.Dockerfile
+    # image: redis:7
+    build:
+      context: .
+      dockerfile: base.Dockerfile
     container_name: redis
     hostname: redis
     networks: 
