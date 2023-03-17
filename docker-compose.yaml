@@ -11,6 +11,8 @@ services:
       dockerfile: base.Dockerfile
     container_name: redis
     hostname: redis
+    labels:
+      autoheal: 'true'
     networks: 
       - main-network
     ports:
